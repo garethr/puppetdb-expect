@@ -30,6 +30,12 @@ pretty expressive code:
 (expect 2 (count nodes))
 ```
 
+In order to run the tests yourself you'll need to have a PuppetDB
+instance running on HTTP (this is a simple experiement, but the
+underlying driver supports HTTPS so it would just need a bit more code)
+and to set a `PUPPETDB_ADDRESS` environment variable. Alternatively you
+can use `.lein-env` if you know what you're doing.
+
 You can run the tests with the following. Note that the specific tests
 here are unlikely to pass with anything but the small test dataset I
 was using.
