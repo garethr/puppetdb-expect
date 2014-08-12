@@ -30,6 +30,19 @@ pretty expressive code:
 (expect 2 (count nodes))
 ```
 
+Or:
+
+```clojure
+(expect "Linux" (from-each
+  [node (get (puppetdb/query client "/v3/facts/kernel") :value)] node))
+```
+
+The current [full test
+suite](https://github.com/garethr/puppetdb-expect/blob/master/test/puppetdb_expect/test.clj)
+is available in the repository.
+
+## Running
+
 In order to run the tests yourself you'll need to have a PuppetDB
 instance running on HTTP (this is a simple experiement, but the
 underlying driver supports HTTPS so it would just need a bit more code)
