@@ -33,8 +33,7 @@ pretty expressive code:
 Or:
 
 ```clojure
-(expect "Linux" (from-each
-  [node (get (puppetdb/query client "/v3/facts/kernel") :value)] node))
+(expect (installed? "master" "wget"))
 ```
 
 The current [full test
