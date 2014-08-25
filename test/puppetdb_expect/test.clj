@@ -10,6 +10,9 @@
 (def average-resources-per-node
   (:Value (puppetdb/query client "/v3/metrics/mbean/com.puppetlabs.puppetdb.query.population:type=default,name=avg-resources-per-node")))
 
+(def catalog-duplication-rate
+  (:Value (puppetdb/query client "/v3/metrics/mbean/com.puppetlabs.puppetdb.scf.storage:type=default,name=duplicate-pct")))
+
 (defn installed? [node package]
   (= false (empty?
     (puppetdb/query client (str "/v3/nodes/" node "/resources/Package/" package)))))
@@ -37,3 +40,7 @@
 
 ; keep a check on the number of resources
 (expect (< average-resources-per-node 300))
+
+; maintain a high catalog duplication as per
+; https://docs.puppetlabs.com/puppetdb/2.1/puppetdb-faq.html#why-is-my-catalog-duplication-rate-so-low
+(expect (> catalog-duplication-rate 0.9))
