@@ -29,9 +29,11 @@
 ; check specific node has package installed
 (expect (installed? "master" "pe-puppetdb"))
 
+(defn facts [fact]
+  (map :value (puppetdb/query client (str "/v3/facts/" fact))))
+
 ; check all machines are running Ubuntu
-(expect (every? ubuntu?
-  (map :value (puppetdb/query client "/v3/facts/operatingsystem"))))
+(expect (every? ubuntu? (facts "operatingsystem")))
 
 ; keep a check on the number of resources
 (expect (< average-resources-per-node 300))
