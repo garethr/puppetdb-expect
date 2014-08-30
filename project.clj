@@ -1,4 +1,4 @@
-(defproject query "0.1.0-SNAPSHOT"
+(defproject puppetdb-expect "0.1.0-SNAPSHOT"
   :description "Experiments writing tests against PuppetDB"
   :url "https://github.com/garethr/puppetdb-expect"
   :license {:name "Eclipse Public License"
@@ -8,6 +8,7 @@
             [lein-kibit "0.0.8"]
             [jonase/eastwood "0.1.4"]
             [lein-autoexpect "1.0"]]
+  :aliases {"test" ["expectations"]}
   :dependencies [
                  [org.clojure/clojure "1.5.1"]
                  [expectations "2.0.9"]
